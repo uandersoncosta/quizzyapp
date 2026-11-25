@@ -1,34 +1,52 @@
-.idea
-.ipynb_checkpoints
-.mypy_cache
-.vscode
-__pycache__
-.pytest_cache
-htmlcov
-dist
-site
-site_zensical_src
-.coverage*
+# Ambientes virtuais
+.venv/
+venv/
+env/
+ENV/
+env3.*/
+
+# Variáveis de ambiente e segredos
+.env
+.env.*
+!.env.example
+
+# Cache e arquivos compilados do Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Empacotamento e build
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Testes e cobertura
+.pytest_cache/
+.coverage
+.coverage.*
 coverage.xml
-.netlify
+htmlcov/
+
+# Tipagem e linters
+.mypy_cache/
+.ruff_cache/
+
+# Bancos de dados locais e logs
+*.db
+*.sqlite3
 test.db
+*.log
 log.txt
-Pipfile.lock
-env3.*
-env
-docs_build
-site_build
-venv
-.venv
-docs.zip
-archive.zip
 
-# vim temporary files
+# IDEs e editores
+.vscode/
+.idea/
+*.swp
+*.swo
 *~
-.*.sw?
-.cache
 
-# macOS
+# Sistema operacional
 .DS_Store
-
-.codspeed
+Thumbs.db
