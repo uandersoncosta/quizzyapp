@@ -1,3 +1,6 @@
 from fastapi import FastAPI
+from app.auth.routes import router as auth_router
 
-app = FastAPI()
+app = FastAPI(title='Quizzy App')
+
+app.include_router(auth_router)
