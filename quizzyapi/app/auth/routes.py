@@ -62,3 +62,28 @@ def signup(data: SignUpRequest, db: Session = Depends(get_db)):
         "full_name": new_user.profile.full_name,
         "message": "Conta criada com sucesso"
     }
+
+@router.post("/signin", status_code=status.HTTP_200_OK, response_model=TokenResponse)
+def signin(data: SignInRequest, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.email == data.email).first()
+
+    if not user or not verify_password(data.password, user.hashed_password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="E-mail or Password are incorrects"
+        )
+
+    if not user.is_active:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Conta desativada"
+        )
+
+    access_token = create_access_token(
+        user_id=str(user.id)
+    )
+
+    return {
+        "access_token": access_token,
+        "token_type": "bearer"
+    }
